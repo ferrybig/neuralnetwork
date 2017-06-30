@@ -169,61 +169,10 @@ public final class CompiledNetwork extends AbstractNetwork {
 		}
 	}
 
-//	/**
-//	 *
-//	 * @param weigthIndex
-//	 * @param outputLayerIndex
-//	 * @param previousLayerSize
-//	 * @param layerSize
-//	 * @param threads
-//	 * @see ExecutorService#invokeAll(java.util.Collection)
-//	 * @return
-//	 */
-//	private List<Callable<?>> resolveLayerParalel(int weigthIndex, int outputLayerIndex,
-//			int previousOutputLayerStart, int previousLayerSize, int layerSize, int threads) {
-//		int perThread = (int) Math.ceil(layerSize / (double) threads);
-//		List<Callable<?>> callables = new ArrayList<>(threads);
-//		for (int outputIndex = 0; outputIndex < layerSize; outputIndex += perThread) {
-//			int batchSize;
-//			if (outputIndex + perThread > layerSize) {
-//				batchSize = layerSize - outputIndex;
-//			} else {
-//				batchSize = perThread;
-//			}
-//			int previousLayerSizeIncludingBias = previousLayerSize + 1;
-//			int weigthStartingIndex = weigthIndex + outputIndex * previousLayerSizeIncludingBias;
-//			int outputLayerStart = outputLayerIndex + outputIndex;
-//			callables.add(() -> {
-//				resolveLayerSequential(weigthStartingIndex, outputLayerStart,
-//						previousOutputLayerStart, previousLayerSize, batchSize);
-//				return null;
-//			});
-//		}
-//		return callables;
-//
-//	}
 	public static double sigmoid(double in) {
 		return 1 / (1 + Math.pow(Math.E, -in));
 	}
 
-	//
-	//	private void writeObject(ObjectOutputStream out)
-	//			throws IOException {
-	//		write(out);
-	//	}
-	//
-	//	private void readObject(ObjectInputStream in)
-	//			throws IOException, ClassNotFoundException {
-	//		try {
-	//			Field weigthField = this.getClass().getDeclaredField("weigth");
-	//			Field sizeField = this.getClass().getDeclaredField("layerSize");
-	//			Field outputField = this.getClass().getDeclaredField("outputLayer");
-	//			throw new IOException("Not yet implemented");
-	//		} catch (NoSuchFieldException | SecurityException ex) {
-	//			throw new IOException("Cannot load network, reflection problem", ex);
-	//		}
-	//
-	//	}
 	public static CompiledNetwork read(DataInput in) throws IOException {
 		int version = in.readInt();
 		if (version == 0 || version == 1) {
