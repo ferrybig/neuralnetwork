@@ -315,24 +315,24 @@ public class InTrainingForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void windowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_windowClosed
-		this.runner.stop();
-		ThreadPoolExecutor service = this.runner.getPool();
-		if(service == null)
-			return;
-		ProgressMonitor mon = new ProgressMonitor(this.getParent(), "Closing worker pool...", "", 0, this.threads);
-		mon.setMillisToDecideToPopup(1000);
-		Timer timer = new Timer(100, e -> {
-			mon.setProgress(threads - service.getPoolSize());
-			mon.setNote("Waiting for " + service.getPoolSize() + " threads to stop");
-			Timer t = (Timer)e.getSource();
-			if(service.isTerminated()) {
-				System.out.println("Main worker pool terminated");
-				t.stop();
-				mon.close();
-			}
-		});
-		timer.setRepeats(true);
-		timer.start();
+//		this.runner.stop();
+//		ThreadPoolExecutor service = this.runner.getPool();
+//		if(service == null)
+//			return;
+//		ProgressMonitor mon = new ProgressMonitor(this.getParent(), "Closing worker pool...", "", 0, this.threads);
+//		mon.setMillisToDecideToPopup(1000);
+//		Timer timer = new Timer(100, e -> {
+//			mon.setProgress(threads - service.getPoolSize());
+//			mon.setNote("Waiting for " + service.getPoolSize() + " threads to stop");
+//			Timer t = (Timer)e.getSource();
+//			if(service.isTerminated()) {
+//				System.out.println("Main worker pool terminated");
+//				t.stop();
+//				mon.close();
+//			}
+//		});
+//		timer.setRepeats(true);
+//		timer.start();
 
     }//GEN-LAST:event_windowClosed
 

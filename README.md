@@ -10,6 +10,12 @@ These double arrays are then read in simple for loops, the indexes are calculate
 
 ## Usage
 
+### Building
+
+This project is build using [Maven](https://maven.apache.org/), once you installed Maven, you can build this project (execute from the directory where you cloned the project):
+
+"C:/Maven/bin/mvn" clean install
+
 ### Gui
 
 Start the gui using `java -cp neuralnetwork.jar me.ferrybig.javacoding.neuralnetwork.gui.network.ApplicationForm`
@@ -60,3 +66,10 @@ This project is designed to be used from the api, a few examples are given below
 
 ### XOR with 2 inputs solved by the network
 [![](https://i.imgur.com/IN8Rz7B.png)](https://i.imgur.com/IN8Rz7B.png)
+
+## Resizing
+
+At the moment, dynamic resizing is not possible. To change the size of the
+neural net, go into the file `src/main/java/me/ferrybig/javacoding/neuralnetwork/gui/network/ApplicationForm.java`.
+Inside this file, on line 55, you will find an array, containing the size of the
+network, together with a few examples of sizes. The other parts (like training) will automaticly adjust based on these sizes.

@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
-import org.apache.commons.lang.Validate;
+//import org.apache.commons.lang.Validate;
 
 public final class CompiledNetwork extends AbstractNetwork {
 
@@ -32,7 +32,7 @@ public final class CompiledNetwork extends AbstractNetwork {
 		int oldSize = layerSize[0];
 		for (int i = 1; i < this.layerSize.length; i++) {
 			int size = this.layerSize[i];
-			Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
+			//Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
 			if (size + oldSize > minOutputSize) {
 				minOutputSize = size + oldSize;
 			}
@@ -42,12 +42,12 @@ public final class CompiledNetwork extends AbstractNetwork {
 			// Add bias for the neurons
 			weigthSize += size;
 			oldSize = size;
-			Validate.isTrue(outputSize >= 0,
-					"LayerSize to large to represent a an integer, overflow detected to ", outputSize);
-			Validate.isTrue(weigthSize >= 0,
-					"LayerSize to large to represent a an integer, overflow detected to ", weigthSize);
+			//Validate.isTrue(outputSize >= 0,
+			//		"LayerSize to large to represent a an integer, overflow detected to ", outputSize);
+			//Validate.isTrue(weigthSize >= 0,
+			//		"LayerSize to large to represent a an integer, overflow detected to ", weigthSize);
 		}
-		Validate.isTrue(weigth.length == weigthSize, "Length of weight array does not match expected size: ", weigthSize);
+		//Validate.isTrue(weigth.length == weigthSize, "Length of weight array does not match expected size: ", weigthSize);
 		maxCacheSize = outputSize;
 		minCacheSize = minOutputSize;
 	}
@@ -278,26 +278,26 @@ public final class CompiledNetwork extends AbstractNetwork {
 		int oldSize = layerSize[0];
 		for (int i = 1; i < layerSize.length; i++) {
 			int size = layerSize[i];
-			Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
+			//Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
 			// Add neurons themselves
 			weigthSize += size * oldSize;
 			// Add bias for the neurons
 			weigthSize += size;
 			oldSize = size;
-			Validate.isTrue(weigthSize >= 0,
-					"LayerSize to large to represent a an integer, overflow detected to ", weigthSize);
+			//Validate.isTrue(weigthSize >= 0,
+			//		"LayerSize to large to represent a an integer, overflow detected to ", weigthSize);
 		}
 		return new double[weigthSize];
 	}
 
 	@Override
 	protected Layer createLayer(int index) {
-		Validate.isTrue(!(index < 0 || index >= getLayerCount()), "Layer index out of range: ", index);
+		//Validate.isTrue(!(index < 0 || index >= getLayerCount()), "Layer index out of range: ", index);
 		int weigthIndex = 0;
 		int oldSize = layerSize[0];
 		for (int i = 1; i < index; i++) {
 			int size = layerSize[i];
-			Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
+			//Validate.isTrue(size > 0, "LayerSize contains an non positive size at index ", i);
 			// Add neurons themselves
 			weigthIndex += size * oldSize;
 			// Add bias for the neurons

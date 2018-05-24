@@ -1,6 +1,5 @@
 package me.ferrybig.javacoding.neuralnetwork.gui.network;
 
-import me.ferrybig.javacoding.neuralnetwork.gui.training.TrainingForm;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,6 +16,7 @@ import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import me.ferrybig.javacoding.neuralnetwork.CompiledNetwork;
+import me.ferrybig.javacoding.neuralnetwork.gui.training.TrainingForm;
 
 /**
  *
@@ -51,19 +51,38 @@ public class ApplicationForm extends javax.swing.JPanel {
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 				ex.printStackTrace();
 			}
-			CompiledNetwork network = new CompiledNetwork(/*new double[]{
-				100, 100, -50,
-				-100, -100, 150,
-				100, 100, -150
-			}, new int[]{2, 2, 1}*/
-					/*new int[]{4,7,4,1}*/
+			CompiledNetwork network = new CompiledNetwork(
+				// TODO Make an actual GUI to change this
+
+				// // Simple XOR network:
+				// new int[]{2, 2, 1}
+
+				// Deep network
+				new int[]{4, 4, 4, 4, 4, 4}
+
+				// // Network that can solve the values in the card game Hearts
+				// new int[]{5, 3}
+
+				// Manual build XOR
+				/*
+					new double[]{
+						100, 100, -50,
+						-100, -100, 150,
+						100, 100, -150
+					}, new int[]{2, 2, 1}
+				*/
+				// Auto build network that can solve the game Hearts
+				/*
 					new double[]{
 						+1.8961423834E+01, -2.8096083987E+01, +1.9196589970E+01,
 						+9.5184649939E+01, -7.6187141561E+01, -4.8002909561E+01,
 						-5.9219461604E+01, -5.3101409829E+01, +3.1068022238E+01,
 						-7.7713999374E+01, +3.1074066134E+01, -4.7287257233E+01,
 						+2.3938131297E+01, -2.9123511549E+01, +1.2443074089E+01,
-						+1.1314415727E+01, +2.4569077886E+01, -6.7064693323E+01}, new int[]{5, 3});
+						+1.1314415727E+01, +2.4569077886E+01, -6.7064693323E+01
+					}, new int[]{5, 3},
+				*/
+			);
 			JFrame frame = new JFrame();
 			frame.setContentPane(new ApplicationForm(frame, network));
 			frame.setLocationByPlatform(true);
@@ -228,6 +247,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         form.setHoverEfect(true);
         form.setLeftToRightView(true);
         form.setNetwork(this.network);
+        form.setLayout(new java.awt.FlowLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -348,6 +368,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         bottomBar.add(train, gridBagConstraints);
 
         test.setText("Test");
+        test.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -367,6 +388,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         topRigth.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("Resize");
+        jButton1.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
@@ -394,6 +416,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         bottomRigth.setLayout(new java.awt.GridBagLayout());
 
         saveButton.setText("Save");
+        saveButton.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
@@ -402,6 +425,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         bottomRigth.add(saveButton, gridBagConstraints);
 
         loadButton.setText("Load");
+        loadButton.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
@@ -410,6 +434,7 @@ public class ApplicationForm extends javax.swing.JPanel {
         bottomRigth.add(loadButton, gridBagConstraints);
 
         newButton.setText("New");
+        newButton.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
